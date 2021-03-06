@@ -6,6 +6,7 @@ const link = document.createElement('link')
 link.rel = 'stylesheet'
 link.href = chrome.runtime.getURL('nebula-watcher.css')
 
+const start = new Date().valueOf()
 chrome.extension.sendMessage({}, function(response) {
   document.head.appendChild(script2)
   document.head.appendChild(link)
@@ -13,8 +14,8 @@ chrome.extension.sendMessage({}, function(response) {
   var readyStateCheckInterval = setInterval(function() {
     if (document.body) {
       clearInterval(readyStateCheckInterval);
-      console.log("Hello. This message was sent from scripts/inject.js");
       document.head.appendChild(script1)
+      console.log(`Injecting nebula watcher after ${new Date().valueOf() - start}ms`);
     }
   }, 10);
 });
