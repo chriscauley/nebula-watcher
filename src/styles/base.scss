@@ -1,0 +1,16 @@
+#nebula-watcher-app {
+  .app-trigger {
+    border-radius: 100%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 0;
+    right: 0;
+    margin: 1rem;
+    padding: 0.5rem;
+    position: fixed;
+    width: 3rem;
+    z-index: 1000;
+  }
+}

@@ -1,6 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
+import './styles/base.scss'
+
 const APP_ID = "nebula-watcher-app"
 if (!document.getElementById(APP_ID)) {
   const el = document.createElement('div')
