@@ -1,19 +1,13 @@
-const xhr = XMLHttpRequest.prototype;
-function banana(xhrInstance) {
-  try {
-    const json = JSON.parse(xhrInstance.responseText);
-    // console.log(xhrInstance);
-    json.response.length && console.log('Monkey RS: ', json.response);
-  } catch (e) {}
+import { createApp } from 'vue'
+import App from './App.vue'
+
+const APP_ID = "nebula-watcher-app"
+if (!document.getElementById(APP_ID)) {
+  const el = document.createElement('div')
+  el.id = APP_ID
+  document.body.appendChild(el)
 }
-const send = xhr.send;
-xhr.send = function(data) {
-  const rsc = this.onreadystatechange;
-  if (rsc) {
-    this.onreadystatechange = function() {
-      banana(this);
-      return rsc.apply(this, arguments);
-    };
-  }
-  return send.apply(this, arguments);
-}
+
+createApp(App).mount('#' + APP_ID)
+
+console.log('arst')

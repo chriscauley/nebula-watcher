@@ -25,7 +25,8 @@
     "https://watchnebula.com/*"
   ],
   "web_accessible_resources": [
-    "src/*"
+    "dist/*",
+    "public/*"
   ],
   "content_scripts": [
     {
