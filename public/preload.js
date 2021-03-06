@@ -1,3 +1,4 @@
+// https://stackoverflow.com/questions/12575572/monkey-patch-xmlhttprequest-onreadystatechange
 const xhr = XMLHttpRequest.prototype;
 function banana(xhrInstance) {
   try {
@@ -7,7 +8,7 @@ function banana(xhrInstance) {
   } catch (e) {}
  }
 const send = xhr.send;
-xhr.send = function(data) {
+xhr.send = function() {
   const rsc = this.onreadystatechange;
   if (rsc) {
     this.onreadystatechange = function() {

@@ -11,12 +11,12 @@
   },
   "default_locale": "en",
   "background": {
-    "page": "src/bg/background.html",
+    "page": "bg/background.html",
     "persistent": true
   },
   "page_action": {
     "default_icon": "icons/icon64.png",
-    "default_popup": "src/page_action/page_action.html"
+    "default_popup": "page_action/page_action.html"
   },
   "permissions": [
     "tabs",
@@ -25,8 +25,7 @@
     "https://watchnebula.com/*"
   ],
   "web_accessible_resources": [
-    "dist/*",
-    "public/*"
+    "*"
   ],
   "content_scripts": [
     {
@@ -35,7 +34,7 @@
       ],
       "run_at": "document_start",
       "js": [
-        "src/inject.js"
+        "inject.js"
       ]
     }
   ]

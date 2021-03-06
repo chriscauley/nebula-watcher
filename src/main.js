@@ -9,5 +9,3 @@ if (!document.getElementById(APP_ID)) {
 }
 
 createApp(App).mount('#' + APP_ID)
-
-console.log('arst')
