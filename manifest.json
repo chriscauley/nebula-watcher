@@ -25,6 +25,9 @@
     "chrome://favicon/",
     "https://watchnebula.com/*"
   ],
+  "web_accessible_resources": [
+    "src/inject/*"
+  ],
   "content_scripts": [
     {
       "matches": [
