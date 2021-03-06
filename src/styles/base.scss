@@ -1,16 +1,26 @@
+/* TODO I'm not 100% sure this tailwind normalization isn't messing with nebulas styles */
+@tailwind base;
+@tailwind components;
+
 #nebula-watcher-app {
+  z-index: 100;
   .app-trigger {
-    border-radius: 100%;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    bottom: 0;
-    right: 0;
-    margin: 1rem;
-    padding: 0.5rem;
-    position: fixed;
+    @apply bg-white bottom-0 fixed flex items-center justify-center m-2 p-2 right-0 rounded-full shadow;
+    cursor: pointer;
     width: 3rem;
-    z-index: 1000;
+  }
+  .modal {
+    @apply fixed inset-0;
+    z-index: 100;
+    .modal-mask {
+      @apply absolute bg-gray-500 inset-0;
+      --tw-bg-opacity: 0.5;
+    }
+    .modal-content {
+      @apply absolute bg-white max-w-full max-h-full p-4 rounded;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 }
