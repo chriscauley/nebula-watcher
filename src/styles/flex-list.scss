@@ -1,0 +1,6 @@
+.flex-list {
+  @apply flex flex-wrap;
+  .item {
+    @apply m-1;
+  }
+}

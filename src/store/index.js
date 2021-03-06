@@ -1,3 +1,3 @@
 import nebula from './nebula'
 
-export default { nebula }
+export default (window.__NW.store = { nebula })

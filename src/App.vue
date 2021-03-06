@@ -6,7 +6,18 @@
   <div class="modal-mask" @click="toggle" />
   <div class="modal-content">
     <div class="modal-close" @click="toggle" />
-    Woo!
+    <h2>Videos</h2>
+    <div class="flex-list">
+      <div v-for="video in videos" :key="video.friendly_title" class="item">
+        {{ video.title }}
+      </div>
+    </div>
+    <h2>Categories</h2>
+    <div class="flex-list">
+      <div v-for="category in categories" :key="category.friendly_title" class="item">
+        {{ category.title }}
+      </div>
+    </div>
   </div>
 </div>
 </template>
@@ -18,6 +29,10 @@ export default {
   name: 'App',
   data() {
     return {open: false}
+  },
+  computed: {
+    categories: store.nebula.listCategories,
+    videos: store.nebula.listVideos,
   },
   methods: {
     toggle() {

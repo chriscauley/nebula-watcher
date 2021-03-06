@@ -1,11 +1,35 @@
 import { reactive } from 'vue'
+import { sortBy, pick } from 'lodash'
 import qs from 'query-string'
 
 const state = reactive({
-  categories: {}
+  channels: {},
+  categories: {},
+  videos: {},
+  unknown: {},
 })
 
 const intercepted = []
+
+const processZObject = (data) => {
+  const {zobject_type_title} = data
+  if (zobject_type_title === 'channel') {
+    const attrs = ['_id', 'avatar', 'bio', 'friendly_title', 'title', 'video_ids']
+    const channel = state.channels[data._id] = pick(data, attrs)
+  } else {
+    // markUnknown(resource, { response, url })
+  }
+}
+
+const processVideo = (data) => {
+  const attrs = ['_id', 'description', 'duration', 'friendly_title', 'title', 'short_description', 'published_at']
+  state.videos[data._id] = pick(data, attrs)
+}
+
+const markUnknown = (key, item) => {
+  state.unknown[key] = state.unknown[key] || []
+  state.unknown[key].push(item)
+}
 
 const interceptXHR = window.__NW.interceptXHR = ({ response, url }) => {
   intercepted.push({ response, url })
@@ -19,14 +43,23 @@ const interceptXHR = window.__NW.interceptXHR = ({ response, url }) => {
       } else {
         values.forEach(v => {
           if (!state.categories[friendly_title].values.includes(v)) {
-            console.log('missing value', v, state.categories[friendly_title].values.slice())
+            console.warn('missing value', v, state.categories[friendly_title].values.slice())
           }
         })
       }
     })
+  } else if (resource === 'videos') {
+    response.forEach(processVideo)
+  } else if (resource === 'zobjects') {
+    response.forEach(processZObject)
+  } else {
+    markUnknown(resource, { response, url })
   }
 }
 
 window.__NW.xhr_backlog.forEach(interceptXHR)
-
-export default { state }
+export default {
+  state,
+  listCategories: () => sortBy(Object.values(state.categories),'title'),
+  listVideos: () => sortBy(Object.values(state.videos),'title'),
+}
