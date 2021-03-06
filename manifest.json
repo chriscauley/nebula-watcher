@@ -16,7 +16,6 @@
   },
   "page_action": {
     "default_icon": "icons/icon64.png",
-    "default_title": "page action demo",
     "default_popup": "src/page_action/page_action.html"
   },
   "permissions": [
@@ -26,24 +25,16 @@
     "https://watchnebula.com/*"
   ],
   "web_accessible_resources": [
-    "src/inject/*"
+    "src/*"
   ],
   "content_scripts": [
     {
       "matches": [
         "https://watchnebula.com/*"
       ],
-      "css": [
-        "src/inject/inject.css"
-      ]
-    },
-    {
-      "matches": [
-        "https://watchnebula.com/*"
-      ],
       "run_at": "document_start",
       "js": [
-        "src/inject/inject.js"
+        "src/inject.js"
       ]
     }
   ]

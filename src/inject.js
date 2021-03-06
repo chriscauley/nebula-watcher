@@ -1,5 +1,5 @@
 const script = document.createElement('script')
-script.src = chrome.runtime.getURL('src/inject/main.js')
+script.src = chrome.runtime.getURL('src/main.js')
 
 chrome.extension.sendMessage({}, function(response) {
   document.head.appendChild(script)
