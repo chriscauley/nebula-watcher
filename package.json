@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "local-storage-json": "^1.1.0",
     "lodash": "^4.17.21",
     "vue": "^3.0.0"
   },

@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
 import { sortBy, pick } from 'lodash'
-import qs from 'query-string'
+import local from './local'
 
 const state = reactive({
   channels: {},
@@ -16,6 +16,7 @@ const processZObject = (data) => {
   if (zobject_type_title === 'channel') {
     const attrs = ['_id', 'avatar', 'bio', 'friendly_title', 'title', 'video_ids']
     const channel = state.channels[data._id] = pick(data, attrs)
+    local.setChannel(channel)
   } else {
     // markUnknown(resource, { response, url })
   }
@@ -33,8 +34,7 @@ const markUnknown = (key, item) => {
 
 const interceptXHR = window.__NW.interceptXHR = ({ response, url }) => {
   intercepted.push({ response, url })
-  const [path, query_string] = url.split('?')
-  const query = qs.parse(query_string)
+  const [path, _query_string] = url.split('?')
   const resource = path.split('/').pop()
   if (resource === 'categories') {
     response.forEach(({ friendly_title, title, values }) => {
@@ -60,6 +60,7 @@ const interceptXHR = window.__NW.interceptXHR = ({ response, url }) => {
 window.__NW.xhr_backlog.forEach(interceptXHR)
 export default {
   state,
+  listChannels: () => sortBy(Object.values(state.channels),'title'),
   listCategories: () => sortBy(Object.values(state.categories),'title'),
   listVideos: () => sortBy(Object.values(state.videos),'title'),
 }
