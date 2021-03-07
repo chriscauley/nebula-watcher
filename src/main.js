@@ -1,13 +1,13 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
 
-import './styles/base.scss'
+import "./styles/base.scss";
 
-const APP_ID = "nebula-watcher-app"
+const APP_ID = "nebula-watcher-app";
 if (!document.getElementById(APP_ID)) {
-  const el = document.createElement('div')
-  el.id = APP_ID
-  document.body.appendChild(el)
+  const el = document.createElement("div");
+  el.id = APP_ID;
+  document.body.appendChild(el);
 }
 
-createApp(App).mount('#' + APP_ID)
+createApp(App).mount("#" + APP_ID);
