@@ -4,6 +4,9 @@
 
 #nebula-watcher-app {
   z-index: 100;
+  .fa:before {
+    font-family: FontAwesome;
+  }
   .app-trigger {
     @apply bg-white bottom-0 fixed flex items-center justify-center m-2 p-2 right-0 rounded-full shadow;
     cursor: pointer;

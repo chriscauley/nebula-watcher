@@ -55,4 +55,19 @@ const setVideo = (video, channel_id) => {
 
 const getChannelFromSlug = (slug) => SLUG_CHANNELS[slug];
 
-export default { state, setChannel, setVideo, getChannelFromSlug };
+const toggleFollowChannel = ({ _id }) => {
+  const channel = state.channels[_id]
+  channel.following = !channel.following
+  commit()
+}
+
+const isFollowingChannel = ({ _id }) => state.channels[_id]?.following
+
+export default {
+  state,
+  getChannelFromSlug,
+  isFollowingChannel,
+  setChannel,
+  setVideo,
+  toggleFollowChannel,
+};

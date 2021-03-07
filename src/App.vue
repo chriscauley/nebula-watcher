@@ -11,8 +11,10 @@
         <div
           v-for="channel in channels"
           :key="channel.friendly_title"
-          class="item"
+          class="pill"
+          @click="toggleFollowChannel(channel)"
         >
+          <i :class="css.channelStar(channel)" />
           {{ channel.title }}
         </div>
       </div>
@@ -50,11 +52,18 @@ export default {
     categories: store.nebula.listCategories,
     channels: store.nebula.listChannels,
     videos: store.nebula.listVideos,
+    css() {
+      const { isFollowingChannel } = store.local
+      return {
+        channelStar: channel => `fa fa-star${isFollowingChannel(channel) ? '' : '-o'}`,
+      }
+    }
   },
   methods: {
     toggle() {
       this.open = !this.open;
     },
+    toggleFollowChannel: store.local.toggleFollowChannel,
   },
 };
 </script>
