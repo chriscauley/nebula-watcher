@@ -22,7 +22,8 @@
     "tabs",
     "webRequest",
     "chrome://favicon/",
-    "https://watchnebula.com/*"
+    "https://watchnebula.com/*",
+    "https://player.zype.com/embed/*"
   ],
   "web_accessible_resources": [
     "*"
@@ -32,9 +33,20 @@
       "matches": [
         "https://watchnebula.com/*"
       ],
+      "all_frames": true,
       "run_at": "document_start",
       "js": [
         "inject.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://player.zype.com/*"
+      ],
+      "all_frames": true,
+      "run_at": "document_start",
+      "js": [
+        "zype-inject.js"
       ]
     }
   ]
